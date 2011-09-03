@@ -8,11 +8,18 @@ module JSHint4r
       # [return] String
       #
       def src
-        if ( !@src )
-          @src = [JSHINT, RUNNER].map { |f| open(f).read }.join
+        [JSHINT, RUNNER].map { |f| open(f).read }.join
+      end
+
+      #
+      # [return] ExecJS::*::Context
+      #
+      def context
+        if ( !@context )
+          @context = ExecJS.compile( src )
         end
 
-        @src
+        @context
       end
     end
   end

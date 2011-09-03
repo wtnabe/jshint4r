@@ -1,3 +1,5 @@
+require 'execjs'
+
 module JSHint4r
 end
 
