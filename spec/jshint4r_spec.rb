@@ -1,7 +1,8 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
-describe "Jshint4r" do
+describe JSHint4r do
+  pending
   it "fails" do
-    fail "hey buddy, you should probably rename this file and start specing for real"
+    puts "hey buddy, you should probably rename this file and start specing for real"
   end
 end
