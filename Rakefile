@@ -18,9 +18,10 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/wtnabe/jshint4r"
   gem.license = "MIT"
   gem.summary = %Q{jshint4r}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.description = %Q{jshint runner for ruby}
   gem.email = "wtnabe@gmail.com"
   gem.authors = ["wtnabe"]
+  gem.files.include Dir.glob('vendor/jshint/*')
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
@@ -38,8 +39,8 @@ end
 
 task :default => :spec
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
+require 'rdoc/task'
+RDoc::Task.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
