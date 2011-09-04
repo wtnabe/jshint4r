@@ -8,7 +8,7 @@ module JSHint4r
       # [return] String
       #
       def src
-        [JSHINT, RUNNER].map { |f| open(f).read }.join
+        [JSHINT, RUNNER].map { |f| File.read(f) }.join
       end
 
       #
