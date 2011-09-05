@@ -9,13 +9,14 @@ module JSHint4r
       # [return] String or nil
       #
       def report( target, errors )
-        return nil unless errors
-
-        errors.map { |error|
-          e = key_symbolize( error )
-          sprintf( "%s:%s:%s: %s\n%s",
-                   target, e[:line], e[:character], e[:reason], e[:evidence] )
-        }.join("\n") << "\n"
+        if errors and errors.size > 0
+          errors.map { |error|
+            e = key_symbolize( error )
+            sprintf( "%s:%s:%s: %s\n%s",
+                     target,
+                     e[:line], e[:character], e[:reason], e[:evidence] )
+          }.join("\n") << "\n"
+        end
       end
     end
   end
