@@ -8,7 +8,7 @@ module JSHint4r
       # [param]  Array  errors
       # [return] String or nil
       #
-      def report( target, errors )
+      def report( target, errors, verbose = false )
         if errors and errors.size > 0
           errors.map { |error|
             e = key_symbolize( error )
@@ -16,6 +16,8 @@ module JSHint4r
                      target,
                      e[:line], e[:character], e[:reason], e[:evidence] )
           }.join("\n") << "\n"
+        elsif verbose
+          sprintf( "%s ... ok\n", target )
         end
       end
     end

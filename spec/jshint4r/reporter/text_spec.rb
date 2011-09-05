@@ -20,15 +20,25 @@ jshint.js: line 4026, col 28, Missing semicolon.
 EOD
       }
     end
-    context 'no errors' do
-      subject {
-        @reporter.report( 'jshint.js', nil )
-      }
-      it {
-        should eq(<<EOD)
+    describe 'no errors' do
+      context 'verbose' do
+        subject {
+          @reporter.report( 'jshint.js', nil, true )
+        }
+        it {
+          should eq(<<EOD)
 jshint.js ... ok
 EOD
-      }
+        }
+      end
+      context 'silent' do
+        subject {
+          @reporter.report( 'jshint.js', nil )
+        }
+        it {
+          should be_nil
+        }
+      end
     end
   end
 end

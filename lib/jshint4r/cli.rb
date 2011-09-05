@@ -11,7 +11,7 @@ module JSHint4r
       l     = Linter.new( Source.context, config.opts )
       r     = JSHint4r.reporter( config.reporter )
       targets( paths ).each { |f|
-        s = r.report( f, l.lint( f ) )
+        s = r.report( f, l.lint( f ), config.verbose )
         puts s if s
       }
     end
@@ -58,6 +58,12 @@ module JSHint4r
         }
         opt.on( '-r', '--reporter REPORTER' ) { |reporter|
           config.reporter = reporter
+        }
+        opt.on( '-V', '--verbose' ) {
+          config.verbose = true
+        }
+        opt.on( '-s', '--silent' ) {
+          config.verbose = false
         }
       }
 

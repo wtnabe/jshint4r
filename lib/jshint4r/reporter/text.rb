@@ -11,7 +11,7 @@ module JSHint4r
       # [param]  Array  errors
       # [return] String
       #
-      def report( target, errors )
+      def report( target, errors, verbose = false )
         if errors
           errors.map { |error|
             e = key_symbolize( error )
@@ -22,7 +22,7 @@ module JSHint4r
 
 #{errors.size} errors
 EOD
-        else
+        elsif verbose
           sprintf( "%s ... ok\n", target )
         end
       end
