@@ -1,0 +1,9 @@
+src:
+  - spec/fixtures/
+excludes:
+  - '**/no_errors.js'
+verbose: true
+reporter: :compilation
+options: 
+  undef: false
+  asi:   true

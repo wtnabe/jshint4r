@@ -6,42 +6,58 @@ module JSHint4r
       self.new.run
     end
 
-    def initialize
-      @excludes = []
-      @reporter = :text
-      @opts     = {}
-    end
-    attr_reader :excludes, :reporter, :opts
-
     def run
       paths = args.permute( ARGV )
-      l     = Linter.new( Source.context, opts )
-      r     = JSHint4r.reporter( reporter )
+      l     = Linter.new( Source.context, config.opts )
+      r     = JSHint4r.reporter( config.reporter )
       targets( paths ).each { |f|
-        puts r.report( f, l.lint( f ) )
+        s = r.report( f, l.lint( f ) )
+        puts s if s
       }
     end
 
-    def targets( paths )
-      Target.new( paths || [], excludes )
+    #
+    # [param]  String path
+    # [return] JSHint4r::Config
+    #
+    def config( path = nil )
+      if ( !@config )
+        @config = Config.new( path )
+      end
+
+      @config
     end
 
+    #
+    # [param]  Array path
+    # [return] JSHint4r::Target
+    #
+    def targets( paths )
+      Target.new( config.targets + paths || [], config.excludes.uniq )
+    end
+
+    #
+    # [return] OptionParser
+    #
     def args
       opts = OptionParser.new { |opt|
         opt.banner = 'Usage: jshint4r [options] path1 path2 ...'
-        opt.on( '-e', '--exclude PATH' ) { |path|
-          if File.exist?
-            @excludes << [path]
+        opt.on( '-c', '--config PATH' ) { |path|
+          if File.exist?( path )
+            config( path )
           end
         }
-        opt.on( '-o', '--option KEY=VALUE' ) { |opt|
+        opt.on( '-e', '--exclude PATH' ) { |path|
+          config.excludes = path
+        }
+        opt.on( '-o', '--options KEY=VALUE' ) { |opt|
           o = opt.split('=', 2)
           if o.size == 2
-            @opts.merge!( o[0] => o[1] )
+            config.opts = { o[0] => o[1] }
           end
         }
         opt.on( '-r', '--reporter REPORTER' ) { |reporter|
-          @reporter = reporter
+          config.reporter = reporter
         }
       }
 
