@@ -15,7 +15,10 @@ module JSHint4r
     # [return] Array or nil
     #
     def lint( target )
-      context.call('JSHINT.run', File.read(target), opts )
+      errors = context.call('JSHINT.run', File.read(target), opts )
+      if errors
+        errors.compact!
+      end
     end
   end
 end
