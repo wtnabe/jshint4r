@@ -92,7 +92,7 @@ describe JSHint4r::Result do
         @errors.parse( 'var abc' )
       }
       it {
-        expect{should}.to raise_error(ExecJS::ProgramError)
+        expect{subject}.to raise_error(ExecJS::RuntimeError)
       }
     end
   end
