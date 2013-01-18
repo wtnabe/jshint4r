@@ -44,7 +44,7 @@ describe JSHint4r::Result do
         @errors.parse( "{ abc: def }" )
       }
       it {
-        expect{subject}.should raise_error(ExecJS::ProgramError)
+        expect{subject}.to raise_error(ExecJS::ProgramError)
       }
     end
     context "'[]'" do
