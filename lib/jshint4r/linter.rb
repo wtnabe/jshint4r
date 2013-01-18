@@ -18,7 +18,25 @@ module JSHint4r
       errors = context.call('JSHINT.run', File.read(target), opts )
       if errors
         errors = errors.compact
+        errors = allow_unsafe_character(errors) if opts['unsafechar']
       end
+
+      errors
+    end
+
+    #
+    # [param]  Array errors
+    # [return] Array
+    #
+    def allow_unsafe_character( errors )
+      errors.select { |e|
+        case e['reason']
+        when /Unsafe character\./, /Too many errors\./
+          false
+        else
+          true
+        end
+      }
     end
   end
 end
