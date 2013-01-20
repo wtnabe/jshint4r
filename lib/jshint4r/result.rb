@@ -12,6 +12,7 @@ module JSHint4r
     #
     def parse( errors )
       errors = errors || ''
+      raise TypeError unless errors.is_a? String
       ExecJS.eval( errors )
     end
   end

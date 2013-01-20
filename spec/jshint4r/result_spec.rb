@@ -60,7 +60,7 @@ describe JSHint4r::Result do
         @errors.parse( [] )
       }
       it {
-        expect{should}.to raise_error(TypeError)
+        expect{subject}.to raise_error(TypeError)
       }
     end
     context 'empty string' do

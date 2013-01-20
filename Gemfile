@@ -11,6 +11,10 @@ group :development do
   gem "rspec"
   gem "bundler"
   gem "jeweler"
-  gem "rcov"
+  if RUBY_VERSION < '1.9'
+    gem "rcov"
+  else
+    gem 'simplecov'
+  end
   gem 'rdoc'
 end
