@@ -7,10 +7,11 @@ module JSHint4r
     end
 
     def run
-      paths = args.permute( ARGV )
-      l     = Linter.new( Source.context, config.opts )
-      r     = JSHint4r.reporter( config.reporter )
+      paths  = args.permute( ARGV )
+      l      = Linter.new( Source.context, config.opts )
+      r      = JSHint4r.reporter( config.reporter )
       status = true
+
       targets( paths ).each { |f|
         output = r.report( f, l.lint( f ), config.verbose )
         if output
@@ -18,6 +19,7 @@ module JSHint4r
           status = false
         end
       }
+
       exit status
     end
 
