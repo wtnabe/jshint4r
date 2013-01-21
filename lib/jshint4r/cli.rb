@@ -10,10 +10,15 @@ module JSHint4r
       paths = args.permute( ARGV )
       l     = Linter.new( Source.context, config.opts )
       r     = JSHint4r.reporter( config.reporter )
+      status = true
       targets( paths ).each { |f|
-        s = r.report( f, l.lint( f ), config.verbose )
-        puts s if s
+        output = r.report( f, l.lint( f ), config.verbose )
+        if output
+          puts output
+          status = false
+        end
       }
+      exit status
     end
 
     #
