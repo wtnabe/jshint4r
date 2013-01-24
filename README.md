@@ -1,10 +1,33 @@
-{<img src="https://travis-ci.org/wtnabe/jshint4r.png" />}[https://travis-ci.org/wtnabe/jshint4r]
+![https://travis-ci.org/wtnabe/jshint4r](https://travis-ci.org/wtnabe/jshint4r.png)
 
-= jshint4r
+# Jshint4r
 
-Description goes here.
+jshint runner for ruby ( with execjs )
 
-== Contributing to jshint4r
+## Install
+
+    gem install jshint4r
+
+## How to use
+
+just type
+
+    jshint4r
+
+## Requirements
+
+ * CRuby 1.8 or 1.9 ( maybe works for other implements )
+ * JavaScript Runtime ( supported by execjs gem )
+
+## JSHint version
+
+ * r12 jshint/jshint@80277ef
+
+## Bonus feature :-)
+
+ * 'unsafechar' for shutting up 'Unsafe character' mode
+
+## Contributing to jshint4r
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
@@ -14,7 +37,7 @@ Description goes here.
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
-== Copyright
+## Copyright
 
 Copyright (c) 2011 wtnabe. See LICENSE.txt for
 further details.
