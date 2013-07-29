@@ -15,7 +15,7 @@ module JSHint4r
     # [return] Array or nil
     #
     def lint( target )
-      errors = context.call('JSHINT.run', File.read(target), opts )
+      errors = context.call('JSHINT.run', File.read(target).toutf8, opts )
       if errors
         errors = errors.compact
         errors = allow_unsafe_character(errors) if opts['unsafechar']

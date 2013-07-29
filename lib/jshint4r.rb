@@ -1,4 +1,6 @@
 require 'execjs'
+require 'yaml'
+require 'kconv'
 
 module JSHint4r
 end
